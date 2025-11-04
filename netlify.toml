@@ -6,29 +6,14 @@
   NODE_VERSION = "18"
   NPM_FLAGS = "--legacy-peer-deps"
 
+# Next.js plugin for optimal Netlify deployment
 [[plugins]]
   package = "@netlify/plugin-nextjs"
 
-[build.processing]
-  skip_processing = false
-
-[build.processing.html]
-  pretty_urls = true
-  minify_html = false
-
-[build.processing.css]
-  bundle = true
-  minify = true
-
-[build.processing.js]
-  bundle = true
-  minify = true
-
-[build.processing.images]
-  compress = true
-
+# Redirects for Next.js routing
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
+  force = false
 
