@@ -10,7 +10,9 @@ const socialLinks = [
 
 export default function Footer() {
   return (
-    <footer className="bg-midnight-black border-t border-electric-violet/20">
+    <footer className="bg-midnight-black border-t-2 border-electric-violet/20 relative">
+      {/* Orange accent stripe at footer top */}
+      <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-luma-orange to-transparent opacity-50" />
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Brand */}

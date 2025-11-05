@@ -39,10 +39,17 @@ export default function Home() {
     <div className="min-h-screen">
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+        {/* Orange accent stripe pattern background */}
+        <div className="absolute inset-0 bg-stripe-pattern opacity-20" />
+        
         {/* Video Background Placeholder */}
         <div className="absolute inset-0 bg-gradient-to-b from-midnight-black via-electric-violet/20 to-midnight-black">
           <div className="absolute inset-0 bg-[url('/hero-pattern.svg')] opacity-10" />
         </div>
+        
+        {/* Orange edge accents */}
+        <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-luma-orange via-luma-amber to-transparent opacity-60" />
+        <div className="absolute right-0 top-0 bottom-0 w-1 bg-gradient-to-b from-transparent via-luma-amber to-luma-orange opacity-60" />
 
         {/* Animated Background Elements */}
         <motion.div
@@ -111,7 +118,9 @@ export default function Home() {
       </section>
 
       {/* Key Features Section */}
-      <section className="py-24 bg-midnight-black">
+      <section className="py-24 bg-midnight-black relative">
+        {/* Orange accent stripe at section top */}
+        <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-luma-orange to-transparent opacity-50" />
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -143,7 +152,9 @@ export default function Home() {
       </section>
 
       {/* Made with Luma Showcase */}
-      <section className="py-24 bg-gradient-to-b from-midnight-black via-gray-900 to-midnight-black">
+      <section className="py-24 bg-gradient-to-b from-midnight-black via-gray-900 to-midnight-black relative">
+        {/* Orange accent stripe */}
+        <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-luma-orange to-transparent opacity-50" />
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -187,7 +198,9 @@ export default function Home() {
       </section>
 
       {/* Community CTA */}
-      <section className="py-24 bg-midnight-black">
+      <section className="py-24 bg-midnight-black relative">
+        {/* Orange accent stripe */}
+        <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-luma-orange to-transparent opacity-50" />
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

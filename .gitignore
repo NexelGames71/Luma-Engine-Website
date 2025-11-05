@@ -34,3 +34,8 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
+# Luma Engine source files (not needed for website)
+assets/images/Luma/
+!assets/images/icon.png
+!assets/images/icon.svg
+

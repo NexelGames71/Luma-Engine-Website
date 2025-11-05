@@ -24,9 +24,9 @@ export default function Button({
   const baseClasses = 'inline-flex items-center justify-center font-semibold rounded-lg transition-all duration-300'
   
   const variantClasses = {
-    primary: 'bg-gradient-to-r from-electric-violet to-luminite-blue text-white neon-glow-hover',
-    secondary: 'bg-midnight-black border-2 border-electric-violet text-electric-violet hover:bg-electric-violet hover:text-white',
-    outline: 'border-2 border-luminite-blue text-luminite-blue hover:bg-luminite-blue hover:text-midnight-black',
+    primary: 'bg-gradient-to-r from-electric-violet to-luminite-blue text-white neon-glow-hover border border-luma-orange/30 hover:border-luma-orange/60',
+    secondary: 'bg-midnight-black border-2 border-electric-violet text-electric-violet hover:bg-electric-violet hover:text-white hover:border-luma-orange/50',
+    outline: 'border-2 border-luminite-blue text-luminite-blue hover:bg-luminite-blue hover:text-midnight-black hover:border-luma-orange/50',
   }
   
   const sizeClasses = {
