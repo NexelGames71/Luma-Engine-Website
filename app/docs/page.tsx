@@ -599,7 +599,7 @@ export default function DocsPage() {
               Can't find what you're looking for? Join our community and get help from experienced developers, or check out our interactive documentation portal.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button href="https://discord.gg/qbsjpEmv" variant="primary" size="lg">
+              <Button href="https://discord.gg/cDYB7nddVh" variant="primary" size="lg">
                 Join Discord Community
               </Button>
               <Button href="https://docs.lumaengine.dev" variant="outline" size="lg">

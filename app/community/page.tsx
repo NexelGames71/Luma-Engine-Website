@@ -9,7 +9,7 @@ const communityLinks = [
     name: 'Discord',
     description: 'Join our Discord server for real-time discussions, help, and community support',
     icon: <MessageSquare size={32} />,
-    href: 'https://discord.gg/qbsjpEmv',
+    href: 'https://discord.gg/cDYB7nddVh',
     color: 'from-indigo-500 to-purple-500',
   },
   {

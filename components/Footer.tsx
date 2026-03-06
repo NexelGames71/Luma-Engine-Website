@@ -4,7 +4,7 @@ import { Github, Youtube, MessageSquare, Mail } from 'lucide-react'
 const socialLinks = [
   { icon: Github, href: 'https://github.com/NexelGames71', label: 'GitHub' },
   { icon: Youtube, href: '#', label: 'YouTube' },
-  { icon: MessageSquare, href: 'https://discord.gg/qbsjpEmv', label: 'Discord' },
+  { icon: MessageSquare, href: 'https://discord.gg/cDYB7nddVh', label: 'Discord' },
   { icon: Mail, href: 'mailto:contact@nexelgames.com', label: 'Email' },
 ]
 

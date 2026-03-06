@@ -216,7 +216,7 @@ export default function Home() {
               Connect with creators, share your work, and get help from the Luma Engine community.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button href="https://discord.gg/qbsjpEmv" variant="primary" size="lg">
+              <Button href="https://discord.gg/cDYB7nddVh" variant="primary" size="lg">
                 Join Discord
               </Button>
               <Button href="https://github.com/NexelGames71" variant="secondary" size="lg">
