@@ -11,6 +11,7 @@ const navItems = [
   { name: 'Features', href: '/features' },
   { name: 'Download', href: '/download' },
   { name: 'Docs', href: '/docs' },
+  { name: 'Learn', href: '/learn' },
   { name: 'Ecosystem', href: '/ecosystem' },
   { name: 'Community', href: '/community' },
   { name: 'About', href: '/about' },
