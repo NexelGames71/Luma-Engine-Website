@@ -16,9 +16,9 @@ export const metadata: Metadata = {
   keywords: ['game engine', 'game development', 'Luma Engine', 'Nexel Games', 'game creation'],
   authors: [{ name: 'Nexel Games' }],
   icons: {
-    icon: '/icon.png',
+    icon: '/Luma_Icon.png',
     shortcut: '/favicon.ico',
-    apple: '/icon.png',
+    apple: '/Luma_Icon.png',
   },
   openGraph: {
     title: 'Luma Engine - Next-Generation Game Creation',
