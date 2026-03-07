@@ -265,7 +265,7 @@ export default function Learn() {
                     </span>
                   </div>
                   
-                  <Button href="#" variant="ghost" size="sm">
+                  <Button href="#" variant="outline" size="sm">
                     Start
                   </Button>
                 </div>
@@ -320,7 +320,7 @@ export default function Learn() {
                   {resource.description}
                 </p>
                 
-                <Button href={resource.href} variant="ghost" size="sm" className="w-full">
+                <Button href={resource.href} variant="outline" size="sm" className="w-full">
                   Explore
                 </Button>
               </motion.div>
