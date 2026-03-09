@@ -3,7 +3,7 @@
 import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 import { User, Mail, Lock, Eye, EyeOff, Chrome } from 'lucide-react'
-import { auth, googleProvider } from '../src/firebase';
+import { getFirebaseAuth, getGoogleProvider } from '../src/firebase';
 import { signInWithPopup, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth';
 import { useRouter } from 'next/navigation'
 
@@ -23,6 +23,8 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, mode }) => {
   const handleGoogleSignIn = async () => {
     setIsLoading(true);
     try {
+      const auth = getFirebaseAuth();
+      const googleProvider = getGoogleProvider();
       await signInWithPopup(auth, googleProvider);
       onClose();
       router.push('/dashboard')
@@ -38,6 +40,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, mode }) => {
     setIsLoading(true);
     
     try {
+      const auth = getFirebaseAuth();
       if (mode === 'signin') {
         await signInWithEmailAndPassword(auth, email, password);
       } else {

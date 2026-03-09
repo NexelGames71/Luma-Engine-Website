@@ -3,7 +3,8 @@
 import React, { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { User, BookOpen, Download, Settings, LogOut, Award, Clock } from 'lucide-react'
-import { auth, onAuthStateChanged, signOut } from '../../src/firebase';
+import { getFirebaseAuth } from '../../src/firebase';
+import { onAuthStateChanged, signOut } from 'firebase/auth';
 import { useRouter } from 'next/navigation'
 
 interface UserStats {
@@ -24,16 +25,20 @@ const Dashboard: React.FC = () => {
   const router = useRouter()
 
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((user) => {
-      setUser(user)
-    })
-    return unsubscribe
-  }, [])
+    const auth = getFirebaseAuth();
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (!user) {
+        router.push('/');
+      }
+    });
+    return unsubscribe;
+  }, [router]);
 
   const handleSignOut = async () => {
-    await auth.signOut()
-    router.push('/')
-  }
+    const auth = getFirebaseAuth();
+    await signOut(auth);
+    router.push('/');
+  };
 
   if (!user) {
     return (

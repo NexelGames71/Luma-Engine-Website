@@ -5,7 +5,8 @@ import { Sparkles, Code, Package, Zap, User } from 'lucide-react'
 import Button from '@/components/Button'
 import FeatureCard from '@/components/FeatureCard'
 import AuthModal from '@/components/AuthModal'
-import { auth, onAuthStateChanged } from '../src/firebase'
+import { getFirebaseAuth } from '../src/firebase';
+import { onAuthStateChanged } from 'firebase/auth';
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 
@@ -16,10 +17,11 @@ export default function Home() {
   const router = useRouter()
 
   useEffect(() => {
+    const auth = getFirebaseAuth();
     const unsubscribe = onAuthStateChanged(auth, (user) => {
-      setUser(user)
-    })
-    return unsubscribe
+      setUser(user);
+    });
+    return unsubscribe;
   }, [])
   const features = [
     {
