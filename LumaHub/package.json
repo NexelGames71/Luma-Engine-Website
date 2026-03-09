@@ -12,12 +12,12 @@
     "electron": "electron .",
     "electron-dev": "concurrently \"npm start\" \"wait-on http://localhost:3000 && electron .\"",
     "electron-pack": "electron-builder",
-    "preelectron-pack": "npm run build"
+    "preelectron-pack": "npm run build",
+    "package": "electron-packager . LumaHub --platform=win32 --arch=x64 --out=dist --overwrite"
   },
   "dependencies": {
     "clsx": "^2.0.0",
     "concurrently": "^8.2.2",
-    "electron-builder": "^26.8.1",
     "firebase": "^10.7.1",
     "framer-motion": "^10.16.16",
     "lucide-react": "^0.294.0",
@@ -33,6 +33,8 @@
     "@types/react-dom": "^18.2.18",
     "autoprefixer": "^10.4.16",
     "electron": "^28.3.3",
+    "electron-builder": "^26.8.1",
+    "electron-packager": "^17.1.2",
     "postcss": "^8.4.32",
     "tailwindcss": "^3.4.0",
     "typescript": "^4.9.5"
@@ -48,11 +50,11 @@
       "public/electron.js",
       "node_modules/**/*"
     ],
-    "mac": {
-      "category": "public.app-category.developer-tools"
-    },
     "win": {
       "target": "nsis"
+    },
+    "mac": {
+      "category": "public.app-category.developer-tools"
     },
     "linux": {
       "target": "AppImage"

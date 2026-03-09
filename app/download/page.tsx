@@ -113,6 +113,33 @@ export default function DownloadPage() {
         </div>
       </section>
 
+      {/* Luma Hub Screenshot */}
+      <section className="py-16 bg-gradient-to-b from-midnight-black via-gray-900 to-midnight-black">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="max-w-6xl mx-auto"
+          >
+            <div className="relative rounded-xl overflow-hidden border-2 border-electric-violet/20 shadow-2xl">
+              <img 
+                src="/Luma_Hub.png" 
+                alt="Luma Hub Desktop Application Interface" 
+                className="w-full h-auto object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-midnight-black/20 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end p-8">
+                <div className="text-white">
+                  <h3 className="text-2xl font-bold mb-2">Luma Hub Interface</h3>
+                  <p className="text-gray-300">Manage engines, projects, and assets in one unified workspace</p>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* Download Options */}
       <section id="download-options" className="py-16 bg-gradient-to-b from-midnight-black via-gray-900 to-midnight-black">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">

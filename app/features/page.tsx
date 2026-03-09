@@ -11,6 +11,7 @@ const features = [
     description: 'Experience next-generation lighting with real-time global illumination, dynamic reflections, and physically-based rendering. The Luminite system delivers stunning visuals that rival AAA engines.',
     icon: <Sparkles size={48} />,
     color: 'from-luminite-blue to-electric-violet',
+    image: '/Feature.png',
   },
   {
     id: 'editor',
@@ -19,6 +20,7 @@ const features = [
     description: 'A professional-grade editor with a familiar layout that adapts to your workflow. Modular panels, powerful tools, and an intuitive interface designed for creators of all skill levels.',
     icon: <Code size={48} />,
     color: 'from-electric-violet to-luminite-blue',
+    image: '/Feature1.png',
   },
   {
     id: 'terrain',
@@ -27,6 +29,7 @@ const features = [
     description: 'Create vast worlds with ease. Our terrain system lets you sculpt mountains, paint textures, and generate landscapes with powerful procedural tools and real-time preview.',
     icon: <Zap size={48} />,
     color: 'from-luminite-blue to-electric-violet',
+    image: '/Feature2.png',
   },
   {
     id: 'scripting',
@@ -35,6 +38,7 @@ const features = [
     description: 'A modern scripting language built for game development. E-Script combines the simplicity of scripting with the power of compiled languages, making game logic intuitive and performant.',
     icon: <Package size={48} />,
     color: 'from-electric-violet to-luminite-blue',
+    image: '/Feature3.png',
   },
   {
     id: 'ai',
@@ -43,6 +47,7 @@ const features = [
     description: 'Leverage AI to enhance your workflow. Integrate AI agents for code generation, asset creation, and intelligent game design assistance. The future of game development is here.',
     icon: <Bot size={48} />,
     color: 'from-luminite-blue to-electric-violet',
+    image: '/Feature4.png',
   },
   {
     id: 'cross-platform',
@@ -107,7 +112,7 @@ export default function FeaturesPage() {
                 <p className="text-gray-400 text-lg leading-relaxed">{feature.description}</p>
               </motion.div>
 
-              {/* Visual/Demo Placeholder */}
+              {/* Visual/Demo */}
               <motion.div
                 initial={{ opacity: 0, x: index % 2 === 0 ? 50 : -50 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -116,10 +121,10 @@ export default function FeaturesPage() {
                 className="flex-1"
               >
                 <div className={`aspect-video rounded-xl bg-gradient-to-br ${feature.color} p-1 neon-glow`}>
-                  {feature.id === 'editor' ? (
+                  {feature.image ? (
                     <img 
-                      src="/Luma_Engine_Editor.png" 
-                      alt="Luma Engine Editor" 
+                      src={feature.image} 
+                      alt={feature.title} 
                       className="w-full h-full rounded-lg object-cover"
                     />
                   ) : (
