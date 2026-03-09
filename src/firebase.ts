@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getAuth, GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, onAuthStateChanged } from "firebase/auth";
+import { getAuth, GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, onAuthStateChanged, updateProfile } from "firebase/auth";
 import { getAnalytics } from "firebase/analytics";
 
 // Your web app's Firebase configuration
@@ -72,7 +72,7 @@ export {
 export const updateUserProfile = async (displayName: string) => {
   const auth = getFirebaseAuth();
   if (auth.currentUser) {
-    await auth.currentUser.updateProfile({ displayName });
+    await updateProfile(auth.currentUser, { displayName });
   }
 };
 
