@@ -119,14 +119,23 @@ export default function Home() {
                 </Button>
               </>
             ) : (
-              <>
-                <Button onClick={() => setIsAuthModalOpen(true)} variant="primary" size="lg">
-                  Get Started
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Button 
+                  href={user ? "/dashboard" : "#"}
+                  variant="primary" 
+                  size="lg"
+                  onClick={!user ? () => setIsAuthModalOpen(true) : undefined}
+                >
+                  {user ? 'Go to Dashboard' : 'Get Started'}
                 </Button>
-                <Button href="/download" variant="outline" size="lg">
-                  Download Beta
+                <Button 
+                  href="/signup" 
+                  variant="outline" 
+                  size="lg"
+                >
+                  Create Account
                 </Button>
-              </>
+              </div>
             )}
           </motion.div>
           
