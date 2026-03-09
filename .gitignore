@@ -39,3 +39,17 @@ assets/images/Luma/
 !assets/images/icon.png
 !assets/images/icon.svg
 
+# LumaHub dependencies and build files
+LumaHub/node_modules/
+LumaHub/build/
+LumaHub/dist/
+
+# Firebase debug logs
+firebase-debug.log
+
+# DataConnect files (optional)
+dataconnect/
+
+# Test files
+test-electron.js
+

@@ -1,11 +1,26 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Sparkles, Code, Package, Zap } from 'lucide-react'
+import { Sparkles, Code, Package, Zap, User } from 'lucide-react'
 import Button from '@/components/Button'
 import FeatureCard from '@/components/FeatureCard'
+import AuthModal from '@/components/AuthModal'
+import { auth, onAuthStateChanged } from '../src/firebase'
+import { useState, useEffect } from 'react'
+import { useRouter } from 'next/navigation'
 
 export default function Home() {
+  const [user, setUser] = useState<any>(null)
+  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false)
+  const [authMode, setAuthMode] = useState<'signin' | 'signup'>('signin')
+  const router = useRouter()
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setUser(user)
+    })
+    return unsubscribe
+  }, [])
   const features = [
     {
       title: 'Luminite Lighting System',
@@ -92,13 +107,39 @@ export default function Home() {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="flex flex-col sm:flex-row gap-4 justify-center items-center"
           >
-            <Button href="/download" variant="primary" size="lg">
-              Download Beta
-            </Button>
-            <Button href="/docs" variant="outline" size="lg">
-              Explore Docs
-            </Button>
+            {user ? (
+              <>
+                <Button href="/dashboard" variant="primary" size="lg">
+                  Go to Dashboard
+                </Button>
+                <Button href="/download" variant="outline" size="lg">
+                  Download Hub
+                </Button>
+              </>
+            ) : (
+              <>
+                <Button onClick={() => setIsAuthModalOpen(true)} variant="primary" size="lg">
+                  Get Started
+                </Button>
+                <Button href="/download" variant="outline" size="lg">
+                  Download Beta
+                </Button>
+              </>
+            )}
           </motion.div>
+          
+          {/* User info when logged in */}
+          {user && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.6 }}
+              className="mt-6 flex items-center justify-center space-x-2 text-gray-400"
+            >
+              <User size={16} />
+              <span>Welcome back, {user.displayName || 'Developer'}!</span>
+            </motion.div>
+          )}
         </div>
 
         {/* Scroll Indicator */}
@@ -226,6 +267,13 @@ export default function Home() {
           </motion.div>
         </div>
       </section>
+      
+      {/* Authentication Modal */}
+      <AuthModal
+        isOpen={isAuthModalOpen}
+        onClose={() => setIsAuthModalOpen(false)}
+        mode={authMode}
+      />
     </div>
   )
 }
