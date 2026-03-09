@@ -68,5 +68,13 @@ export {
   onAuthStateChanged 
 };
 
+// Helper function to update user profile
+export const updateUserProfile = async (displayName: string) => {
+  const auth = getFirebaseAuth();
+  if (auth.currentUser) {
+    await auth.currentUser.updateProfile({ displayName });
+  }
+};
+
 // Export app and analytics (will be null on server side)
 export { app, analytics };

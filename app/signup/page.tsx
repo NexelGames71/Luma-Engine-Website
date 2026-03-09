@@ -2,12 +2,13 @@
 
 import { motion } from 'framer-motion'
 import { Sparkles, User, Mail, Lock, Eye, EyeOff, Chrome } from 'lucide-react'
-import { getFirebaseAuth, getGoogleProvider } from '../../src/firebase';
+import { getFirebaseAuth, getGoogleProvider, updateUserProfile } from '../../src/firebase';
 import { signInWithPopup, signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth';
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 
 export default function SignUp() {
+  const [username, setUsername] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
@@ -37,6 +38,16 @@ export default function SignUp() {
     e.preventDefault();
     setError('');
     
+    if (!username.trim()) {
+      setError('Username is required');
+      return;
+    }
+    
+    if (username.length < 3) {
+      setError('Username must be at least 3 characters');
+      return;
+    }
+    
     if (password !== confirmPassword) {
       setError('Passwords do not match');
       return;
@@ -51,7 +62,11 @@ export default function SignUp() {
     
     try {
       const auth = getFirebaseAuth();
-      await createUserWithEmailAndPassword(auth, email, password);
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      
+      // Update user profile with username
+      await updateUserProfile(username.trim());
+      
       router.push('/dashboard')
     } catch (error: any) {
       setError(error.message || 'Failed to create account');
@@ -102,6 +117,23 @@ export default function SignUp() {
 
         {/* Email/Password Form */}
         <form onSubmit={handleSubmit} className="space-y-4">
+          <div>
+            <label className="block text-sm font-medium text-gray-300 mb-2">
+              Username
+            </label>
+            <div className="relative">
+              <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
+              <input
+                type="text"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                className="w-full pl-10 pr-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-electric-violet focus:ring-1 focus:ring-electric-violet transition-all"
+                placeholder="Choose a username"
+                required
+              />
+            </div>
+          </div>
+
           <div>
             <label className="block text-sm font-medium text-gray-300 mb-2">
               Email

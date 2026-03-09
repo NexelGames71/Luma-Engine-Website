@@ -3,7 +3,7 @@
 import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 import { User, Mail, Lock, Eye, EyeOff, Chrome } from 'lucide-react'
-import { getFirebaseAuth, getGoogleProvider } from '../src/firebase';
+import { getFirebaseAuth, getGoogleProvider, updateUserProfile } from '../src/firebase';
 import { signInWithPopup, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth';
 import { useRouter } from 'next/navigation'
 
@@ -14,6 +14,7 @@ interface AuthModalProps {
 }
 
 const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, mode }) => {
+  const [username, setUsername] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false)
@@ -44,7 +45,13 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, mode }) => {
       if (mode === 'signin') {
         await signInWithEmailAndPassword(auth, email, password);
       } else {
-        await createUserWithEmailAndPassword(auth, email, password);
+        // Sign up with username
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        
+        // Update user profile with username if provided
+        if (username.trim()) {
+          await updateUserProfile(username.trim());
+        }
       }
       onClose();
       router.push('/dashboard')
@@ -99,6 +106,24 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, mode }) => {
 
           {/* Email/Password Form */}
           <form onSubmit={handleSubmit} className="space-y-4">
+            {mode === 'signup' && (
+              <div>
+                <label className="block text-sm font-medium text-gray-300 mb-2">
+                  Username
+                </label>
+                <div className="relative">
+                  <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
+                  <input
+                    type="text"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                    className="w-full pl-10 pr-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-electric-violet focus:ring-1 focus:ring-electric-violet transition-all"
+                    placeholder="Choose a username"
+                  />
+                </div>
+              </div>
+            )}
+            
             <div className="space-y-4">
               <div>
                 <label className="block text-sm font-medium text-gray-300 mb-2">
