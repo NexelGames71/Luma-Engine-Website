@@ -3,7 +3,7 @@
 import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 import { User, Mail, Lock, Eye, EyeOff, Chrome } from 'lucide-react'
-import { getFirebaseAuth, getGoogleProvider, updateUserProfile } from '../src/firebase';
+import { getFirebaseAuth, getGoogleProvider, updateUserProfile, storeUserData } from '../src/firebase';
 import { signInWithPopup, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth';
 import { useRouter } from 'next/navigation'
 
@@ -52,6 +52,12 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, mode }) => {
         if (username.trim()) {
           await updateUserProfile(username.trim());
         }
+        
+        // Store user data in Realtime Database
+        await storeUserData({
+          ...userCredential.user,
+          displayName: username.trim()
+        });
       }
       onClose();
       router.push('/dashboard')

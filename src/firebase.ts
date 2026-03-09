@@ -2,6 +2,7 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, onAuthStateChanged, updateProfile } from "firebase/auth";
 import { getAnalytics } from "firebase/analytics";
+import { getDatabase, ref, set, get } from "firebase/database";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -19,6 +20,7 @@ let app: any = null;
 let analytics: any = null;
 let auth: any = null;
 let googleProvider: any = null;
+let database: any = null;
 
 // Initialize Firebase only on client side
 const initializeFirebase = () => {
@@ -26,6 +28,7 @@ const initializeFirebase = () => {
     app = initializeApp(firebaseConfig);
     auth = getAuth(app);
     googleProvider = new GoogleAuthProvider();
+    database = getDatabase(app);
     
     // Initialize analytics only if supported
     import('firebase/analytics').then(({ getAnalytics }) => {
@@ -57,6 +60,40 @@ export const getFirebaseAuth = () => {
 export const getGoogleProvider = () => {
   initializeFirebase();
   return googleProvider;
+};
+
+export const getFirebaseDatabase = () => {
+  initializeFirebase();
+  return database;
+};
+
+// Helper function to store user data in Realtime Database
+export const storeUserData = async (user: any) => {
+  const db = getFirebaseDatabase();
+  if (db && user) {
+    const userRef = ref(db, `users/${user.uid}`);
+    const userData = {
+      uid: user.uid,
+      email: user.email,
+      displayName: user.displayName,
+      photoURL: user.photoURL,
+      accountType: 'Developer',
+      createdAt: new Date().toISOString(),
+      lastLogin: new Date().toISOString()
+    };
+    await set(userRef, userData);
+  }
+};
+
+// Helper function to get user data from Realtime Database
+export const getUserData = async (uid: string) => {
+  const db = getFirebaseDatabase();
+  if (db) {
+    const userRef = ref(db, `users/${uid}`);
+    const snapshot = await get(userRef);
+    return snapshot.exists() ? snapshot.val() : null;
+  }
+  return null;
 };
 
 // Export auth methods

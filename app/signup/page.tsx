@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { Sparkles, User, Mail, Lock, Eye, EyeOff, Chrome } from 'lucide-react'
-import { getFirebaseAuth, getGoogleProvider, updateUserProfile } from '../../src/firebase';
+import { getFirebaseAuth, getGoogleProvider, updateUserProfile, storeUserData } from '../../src/firebase';
 import { signInWithPopup, signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth';
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
@@ -66,6 +66,12 @@ export default function SignUp() {
       
       // Update user profile with username
       await updateUserProfile(username.trim());
+      
+      // Store user data in Realtime Database
+      await storeUserData({
+        ...userCredential.user,
+        displayName: username.trim()
+      });
       
       router.push('/dashboard')
     } catch (error: any) {
