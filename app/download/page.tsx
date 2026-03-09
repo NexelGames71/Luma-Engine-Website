@@ -1,35 +1,19 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Download, Check, Github, Package, ChevronDown } from 'lucide-react'
+import { Download, Check, Play, Monitor, Smartphone, Gamepad2, Package, Star, ArrowRight } from 'lucide-react'
 import Button from '@/components/Button'
 import { useState } from 'react'
 
-const versions = [
-  {
-    name: 'Stable',
-    version: '1.0.0',
-    description: 'Production-ready release for commercial projects',
-    features: ['Full feature set', 'Production tested', 'Long-term support', 'Documentation'],
-    downloadLink: 'https://github.com/NexelGames71/Luma-Engine/releases/latest',
-    recommended: true,
-  },
-  {
-    name: 'Beta',
-    version: '1.1.0-beta',
-    description: 'Latest features and improvements for early adopters',
-    features: ['Latest features', 'Early access', 'Community support', 'Active development'],
-    downloadLink: 'https://github.com/NexelGames71/Luma-Engine/releases',
-    recommended: false,
-  },
-  {
-    name: 'Source',
-    version: 'Git',
-    description: 'Build from source for maximum control and customization',
-    features: ['Full source access', 'Custom builds', 'Contributions welcome', 'Developer tools'],
-    downloadLink: 'https://github.com/NexelGames71/Luma-Engine',
-    recommended: false,
-  },
+const hubFeatures = [
+  'Easy engine installation and updates',
+  'Multiple engine versions management',
+  'Built-in project templates',
+  'Asset store integration',
+  'Community projects showcase',
+  'Automatic dependency management',
+  'Cross-platform compatibility',
+  'Developer tools integration'
 ]
 
 const systemRequirements = {
@@ -39,7 +23,7 @@ const systemRequirements = {
     '8 GB RAM',
     'NVIDIA GeForce GTX 960 / AMD Radeon R9 280 or equivalent',
     'DirectX 11 / OpenGL 4.3 support',
-    '5 GB available disk space',
+    '2 GB available disk space (for Luma Hub)',
   ],
   recommended: [
     'Windows 11 / macOS 12+ / Linux (Ubuntu 22.04+)',
@@ -47,7 +31,7 @@ const systemRequirements = {
     '16 GB RAM',
     'NVIDIA GeForce GTX 1060 / AMD Radeon RX 580 or better',
     'DirectX 12 / Vulkan support',
-    '10 GB available disk space (SSD recommended)',
+    '5 GB available disk space (SSD recommended)',
   ],
 }
 
@@ -63,7 +47,7 @@ export default function DownloadPage() {
             transition={{ duration: 0.6 }}
             className="text-5xl sm:text-6xl md:text-7xl font-display font-bold mb-6"
           >
-            <span className="gradient-text">Get Luma Engine</span>
+            <span className="gradient-text">Install Luma Hub</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -71,73 +55,167 @@ export default function DownloadPage() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-xl text-gray-300 max-w-3xl mx-auto"
           >
-            Choose your version and start creating amazing games today.
+            The official Luma Engine desktop application for managing engines, projects, and assets.
           </motion.p>
         </div>
       </section>
 
-      {/* Version Selection */}
+      {/* Luma Hub CTA */}
       <section className="py-16 bg-midnight-black">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {versions.map((version, index) => (
+          <div className="max-w-4xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="relative p-12 rounded-2xl bg-gradient-to-br from-electric-violet/20 to-luminite-blue/20 border-2 border-luminite-blue neon-glow"
+            >
+              <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                <span className="px-6 py-2 bg-gradient-to-r from-electric-violet to-luminite-blue text-white text-lg font-bold rounded-full">
+                  Recommended Installation Method
+                </span>
+              </div>
+              
+              <div className="text-center mb-8">
+                <div className="w-20 h-20 bg-gradient-to-r from-electric-violet to-luminite-blue rounded-2xl flex items-center justify-center mx-auto mb-6">
+                  <Package size={40} className="text-white" />
+                </div>
+                <h2 className="text-3xl font-display font-bold mb-4 gradient-text">
+                  Luma Hub Desktop Application
+                </h2>
+                <p className="text-gray-300 text-lg mb-8">
+                  Download and install Luma Hub to access all Luma Engine versions, manage projects, and join the community.
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+                <Button 
+                  href="#download-options" 
+                  variant="primary" 
+                  size="lg"
+                  className="w-full"
+                >
+                  <Download className="inline-block mr-2" size={20} />
+                  Download Luma Hub
+                </Button>
+                <Button 
+                  href="/docs" 
+                  variant="outline" 
+                  size="lg"
+                  className="w-full"
+                >
+                  View Installation Guide
+                </Button>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Download Options */}
+      <section id="download-options" className="py-16 bg-gradient-to-b from-midnight-black via-gray-900 to-midnight-black">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-3xl sm:text-4xl font-display font-bold mb-4">
+              <span className="gradient-text">Download Luma Hub</span>
+            </h2>
+            <p className="text-gray-400">Choose your platform and start creating with Luma Engine</p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto mb-12">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="p-8 rounded-xl bg-gradient-to-br from-gray-900 to-midnight-black border border-electric-violet/20 hover:border-electric-violet/50 transition-all duration-300"
+            >
+              <Monitor size={48} className="text-luminite-blue mb-4" />
+              <h3 className="text-xl font-display font-bold mb-2 gradient-text">Windows</h3>
+              <p className="text-gray-400 text-sm mb-4">Windows 10 (64-bit) and later</p>
+              <Button href="#" variant="primary" size="sm" className="w-full">
+                <Download className="inline-block mr-2" size={16} />
+                Download for Windows
+              </Button>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="p-8 rounded-xl bg-gradient-to-br from-gray-900 to-midnight-black border border-electric-violet/20 hover:border-electric-violet/50 transition-all duration-300"
+            >
+              <Package size={48} className="text-luminite-blue mb-4" />
+              <h3 className="text-xl font-display font-bold mb-2 gradient-text">macOS</h3>
+              <p className="text-gray-400 text-sm mb-4">macOS 10.15 and later</p>
+              <Button href="#" variant="primary" size="sm" className="w-full">
+                <Download className="inline-block mr-2" size={16} />
+                Download for macOS
+              </Button>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="p-8 rounded-xl bg-gradient-to-br from-gray-900 to-midnight-black border border-electric-violet/20 hover:border-electric-violet/50 transition-all duration-300"
+            >
+              <Play size={48} className="text-luminite-blue mb-4" />
+              <h3 className="text-xl font-display font-bold mb-2 gradient-text">Linux</h3>
+              <p className="text-gray-400 text-sm mb-4">Ubuntu 20.04 and later</p>
+              <Button href="#" variant="primary" size="sm" className="w-full">
+                <Download className="inline-block mr-2" size={16} />
+                Download for Linux
+              </Button>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section className="py-16 bg-midnight-black">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-3xl sm:text-4xl font-display font-bold mb-4">
+              <span className="gradient-text">Why Use Luma Hub?</span>
+            </h2>
+            <p className="text-gray-400">Everything you need to develop with Luma Engine in one application</p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+            {hubFeatures.map((feature, index) => (
               <motion.div
-                key={version.name}
+                key={index}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className={`relative p-8 rounded-xl bg-gradient-to-br from-gray-900 to-midnight-black border-2 ${
-                  version.recommended
-                    ? 'border-luminite-blue neon-glow'
-                    : 'border-electric-violet/20 hover:border-electric-violet/50'
-                } transition-all duration-300`}
+                className="flex items-start space-x-3 p-4 rounded-lg bg-gray-900/50 border border-electric-violet/20"
               >
-                {version.recommended && (
-                  <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                    <span className="px-4 py-1 bg-gradient-to-r from-electric-violet to-luminite-blue text-white text-sm font-semibold rounded-full">
-                      Recommended
-                    </span>
-                  </div>
-                )}
-                
-                <div className="text-center mb-6">
-                  <h3 className="text-2xl font-display font-bold mb-2 gradient-text">
-                    {version.name}
-                  </h3>
-                  <p className="text-luminite-blue font-medium mb-4">{version.version}</p>
-                  <p className="text-gray-400 text-sm">{version.description}</p>
-                </div>
-
-                <ul className="space-y-3 mb-6">
-                  {version.features.map((feature) => (
-                    <li key={feature} className="flex items-start">
-                      <Check size={20} className="text-luminite-blue mr-2 flex-shrink-0 mt-0.5" />
-                      <span className="text-gray-300 text-sm">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                <a
-                  href={version.downloadLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`block w-full text-center py-3 rounded-lg font-semibold transition-all duration-300 ${
-                    version.recommended
-                      ? 'bg-gradient-to-r from-electric-violet to-luminite-blue text-white neon-glow-hover'
-                      : 'bg-midnight-black border-2 border-electric-violet text-electric-violet hover:bg-electric-violet hover:text-white'
-                  }`}
-                >
-                  <Download className="inline-block mr-2" size={20} />
-                  Download {version.name}
-                </a>
+                <Check size={20} className="text-luminite-blue flex-shrink-0 mt-1" />
+                <span className="text-gray-300">{feature}</span>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Alternative Downloads */}
+      {/* What You Get */}
       <section className="py-16 bg-gradient-to-b from-midnight-black via-gray-900 to-midnight-black">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -148,33 +226,67 @@ export default function DownloadPage() {
             className="text-center mb-12"
           >
             <h2 className="text-3xl sm:text-4xl font-display font-bold mb-4">
-              <span className="gradient-text">Alternative Downloads</span>
+              <span className="gradient-text">What You Get with Luma Hub</span>
             </h2>
-            <p className="text-gray-400">Download from other sources or package managers</p>
+            <p className="text-gray-400">Complete development ecosystem at your fingertips</p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-            <motion.a
-              href="https://github.com/NexelGames71/Luma-Engine"
-              target="_blank"
-              rel="noopener noreferrer"
-              whileHover={{ scale: 1.02, y: -5 }}
-              className="p-6 rounded-xl bg-gradient-to-br from-gray-900 to-midnight-black border border-electric-violet/20 hover:border-luminite-blue/50 transition-all duration-300"
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="p-8 rounded-xl bg-gradient-to-br from-gray-900 to-midnight-black border border-electric-violet/20"
             >
-              <Github size={32} className="text-luminite-blue mb-4" />
-              <h3 className="text-xl font-display font-bold mb-2 gradient-text">GitHub Releases</h3>
-              <p className="text-gray-400 text-sm">Download installers and archives directly from GitHub</p>
-            </motion.a>
+              <Gamepad2 size={48} className="text-luminite-blue mb-4" />
+              <h3 className="text-2xl font-display font-bold mb-4 gradient-text">Engine Management</h3>
+              <p className="text-gray-300 mb-4">
+                Download and manage multiple Luma Engine versions. Switch between stable, beta, and development builds with ease.
+              </p>
+              <ul className="space-y-2">
+                <li className="flex items-center text-gray-400">
+                  <Check size={16} className="text-luminite-blue mr-2" />
+                  One-click engine installation
+                </li>
+                <li className="flex items-center text-gray-400">
+                  <Check size={16} className="text-luminite-blue mr-2" />
+                  Automatic updates
+                </li>
+                <li className="flex items-center text-gray-400">
+                  <Check size={16} className="text-luminite-blue mr-2" />
+                  Version switching
+                </li>
+              </ul>
+            </motion.div>
 
-            <motion.a
-              href="/ecosystem"
-              whileHover={{ scale: 1.02, y: -5 }}
-              className="p-6 rounded-xl bg-gradient-to-br from-gray-900 to-midnight-black border border-electric-violet/20 hover:border-luminite-blue/50 transition-all duration-300"
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="p-8 rounded-xl bg-gradient-to-br from-gray-900 to-midnight-black border border-electric-violet/20"
             >
-              <Package size={32} className="text-luminite-blue mb-4" />
-              <h3 className="text-xl font-display font-bold mb-2 gradient-text">Package Registry</h3>
-              <p className="text-gray-400 text-sm">Install via Luma Package Manager or npm</p>
-            </motion.a>
+              <Star size={48} className="text-luminite-blue mb-4" />
+              <h3 className="text-2xl font-display font-bold mb-4 gradient-text">Project Tools</h3>
+              <p className="text-gray-300 mb-4">
+                Create, manage, and build your Luma Engine projects. Access templates, assets, and community resources.
+              </p>
+              <ul className="space-y-2">
+                <li className="flex items-center text-gray-400">
+                  <Check size={16} className="text-luminite-blue mr-2" />
+                  Project templates
+                </li>
+                <li className="flex items-center text-gray-400">
+                  <Check size={16} className="text-luminite-blue mr-2" />
+                  Asset management
+                </li>
+                <li className="flex items-center text-gray-400">
+                  <Check size={16} className="text-luminite-blue mr-2" />
+                  Build automation
+                </li>
+              </ul>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -222,52 +334,8 @@ export default function DownloadPage() {
         </div>
       </section>
 
-      {/* FAQ Section */}
-      <section className="py-16 bg-gradient-to-b from-midnight-black via-gray-900 to-midnight-black">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-12"
-          >
-            <h2 className="text-3xl sm:text-4xl font-display font-bold mb-4">
-              <span className="gradient-text">Frequently Asked Questions</span>
-            </h2>
-          </motion.div>
-
-          <div className="max-w-3xl mx-auto space-y-4">
-            <FAQItem
-              question="Is Luma Engine free to use?"
-              answer="Yes! Luma Engine is completely free and open-source. You can use it for both personal and commercial projects without any restrictions."
-            />
-            <FAQItem
-              question="What platforms does Luma Engine support?"
-              answer="Luma Engine supports Windows, macOS, Linux, iOS, Android, and major gaming consoles. You can build your game once and deploy it across all platforms."
-            />
-            <FAQItem
-              question="Do I need to know programming to use Luma Engine?"
-              answer="While basic programming knowledge is helpful, Luma Engine's E-Script language is designed to be intuitive and beginner-friendly. We also provide extensive documentation and tutorials to help you get started."
-            />
-            <FAQItem
-              question="Can I use Luma Engine for commercial projects?"
-              answer="Absolutely! Luma Engine is free for both personal and commercial use. There are no royalties or licensing fees."
-            />
-            <FAQItem
-              question="How do I get help if I'm stuck?"
-              answer="You can join our Discord community, browse the documentation, or check out our GitHub discussions. Our community is very active and helpful!"
-            />
-            <FAQItem
-              question="What's the difference between Stable and Beta versions?"
-              answer="The Stable version is production-ready and thoroughly tested. The Beta version includes the latest features and improvements but may have some bugs. For commercial projects, we recommend the Stable version."
-            />
-          </div>
-        </div>
-      </section>
-
-      {/* Documentation CTA */}
-      <section className="py-16 bg-midnight-black">
+      {/* CTA Section */}
+      <section className="py-16 bg-gradient-to-b from-midnight-black to-midnight-black">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -276,58 +344,24 @@ export default function DownloadPage() {
             transition={{ duration: 0.6 }}
           >
             <h2 className="text-3xl sm:text-4xl font-display font-bold mb-4">
-              <span className="gradient-text">Need Help Getting Started?</span>
+              <span className="gradient-text">Ready to Start Creating?</span>
             </h2>
             <p className="text-gray-400 mb-6 max-w-2xl mx-auto">
-              Check out our comprehensive documentation and tutorials to get up and running quickly.
+              Download Luma Hub and join thousands of developers creating amazing games with Luma Engine.
             </p>
-            <Button href="/docs" variant="primary" size="lg">
-              View Documentation
-            </Button>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button href="#download-options" variant="primary" size="lg">
+                <Download className="inline-block mr-2" size={20} />
+                Download Luma Hub
+              </Button>
+              <Button href="/docs" variant="outline" size="lg">
+                View Documentation
+              </Button>
+            </div>
           </motion.div>
         </div>
       </section>
     </div>
-  )
-}
-
-interface FAQItemProps {
-  question: string
-  answer: string
-}
-
-function FAQItem({ question, answer }: FAQItemProps) {
-  const [isOpen, setIsOpen] = useState(false)
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 10 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      className="rounded-xl bg-gradient-to-br from-gray-900 to-midnight-black border border-electric-violet/20 overflow-hidden"
-    >
-      <button
-        onClick={() => setIsOpen(!isOpen)}
-        className="w-full px-6 py-4 flex items-center justify-between text-left hover:bg-electric-violet/5 transition-colors"
-      >
-        <span className="text-lg font-semibold text-white">{question}</span>
-        <ChevronDown
-          className={`text-luminite-blue transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}
-          size={20}
-        />
-      </button>
-      {isOpen && (
-        <motion.div
-          initial={{ height: 0, opacity: 0 }}
-          animate={{ height: 'auto', opacity: 1 }}
-          exit={{ height: 0, opacity: 0 }}
-          transition={{ duration: 0.3 }}
-          className="overflow-hidden"
-        >
-          <div className="px-6 pb-4 text-gray-300 leading-relaxed">{answer}</div>
-        </motion.div>
-      )}
-    </motion.div>
   )
 }
 
