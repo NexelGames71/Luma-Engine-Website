@@ -116,9 +116,17 @@ export default function FeaturesPage() {
                 className="flex-1"
               >
                 <div className={`aspect-video rounded-xl bg-gradient-to-br ${feature.color} p-1 neon-glow`}>
-                  <div className="w-full h-full rounded-lg bg-midnight-black flex items-center justify-center">
-                    <p className="text-gray-400 text-sm">Demo / Screenshot Placeholder</p>
-                  </div>
+                  {feature.id === 'editor' ? (
+                    <img 
+                      src="/Luma_Engine_Editor.png" 
+                      alt="Luma Engine Editor" 
+                      className="w-full h-full rounded-lg object-cover"
+                    />
+                  ) : (
+                    <div className="w-full h-full rounded-lg bg-midnight-black flex items-center justify-center">
+                      <p className="text-gray-400 text-sm">Demo / Screenshot Placeholder</p>
+                    </div>
+                  )}
                 </div>
               </motion.div>
             </div>

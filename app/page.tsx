@@ -203,6 +203,50 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Luma Engine Editor Showcase */}
+      <section className="py-24 bg-midnight-black relative">
+        {/* Orange accent stripe */}
+        <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-luma-orange to-transparent opacity-50" />
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl sm:text-5xl font-display font-bold mb-4">
+              <span className="gradient-text">Luma Engine Editor</span>
+            </h2>
+            <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+              Professional-grade tools for creating amazing games
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="max-w-6xl mx-auto"
+          >
+            <div className="relative rounded-xl overflow-hidden border-2 border-electric-violet/20 shadow-2xl">
+              <img 
+                src="/Luma_Engine_Editor.png" 
+                alt="Luma Engine Editor Interface" 
+                className="w-full h-auto object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-midnight-black/20 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end p-8">
+                <div className="text-white">
+                  <h3 className="text-2xl font-bold mb-2">Professional Development Environment</h3>
+                  <p className="text-gray-300">Intuitive interface designed for creators of all skill levels</p>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* Made with Luma Showcase */}
       <section className="py-24 bg-gradient-to-b from-midnight-black via-gray-900 to-midnight-black relative">
         {/* Orange accent stripe */}
